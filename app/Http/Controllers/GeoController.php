@@ -24,7 +24,7 @@ class GeoController extends Controller
     {
         $data = $request->validated();
         $data = $this->service->getAddressFromData($data);
-        $data = $this->dto->getDTOGeoAddresses($data);
+        // $data = $this->dto->getDTOGeoAddresses($data);
         dd($data);
     }
 }
