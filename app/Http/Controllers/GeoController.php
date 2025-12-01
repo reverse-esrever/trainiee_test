@@ -27,6 +27,7 @@ class GeoController extends Controller
     {
         $data = $request->validated();
         $data = $this->service->getDataFromAddress($data);
+        session('GeoData', $data);
         return redirect()->route('geo.index')->with('GeoData', $data);
     }
 

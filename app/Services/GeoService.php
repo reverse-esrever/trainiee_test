@@ -10,7 +10,7 @@ class GeoService{
     public function getDataFromAddress(array $data): array{
         $address = $data['address'];
         $data = $this->directGeocoding($address);
-        $geoFilter = new GeoFilterService()->setLocalityName("Москва");
+        $geoFilter = (new GeoFilterService())->setLocalityName("Москва");
         $data = $geoFilter->filter($data);
         return $data;
     }
