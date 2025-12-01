@@ -14,29 +14,33 @@ class GeoFilterService
         return $this;
     }
 
-    public function setLocalityName(string $name){
+    public function setLocalityName(string $name)
+    {
         $this->localityName = $name;
         return $this;
     }
 
-    public function filter(array $data): array{
+    public function filter(array $data): array
+    {
         $filtered = [];
-        foreach($data as $geo){
-            if($this->check($geo)){
+        foreach ($data as $geo) {
+            if ($this->check($geo)) {
                 $filtered[] = $geo;
             }
         }
         return $filtered;
     }
 
-    protected function check(array $singleGeo): bool{
-        if(isset($this->localityName)){
-            $metadata = $singleGeo['GeoObject']['metaDataProperty']['GeocoderMetaData'];
-            $localityName = $metadata['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName'];
-            if($localityName !== $this->localityName){
+    protected function check(array $singleGeo): bool
+    {
+        if (isset($this->localityName)) {
+            $metadata = $singleGeo['GeoObject']['metaDataProperty']['GeocoderMetaData'] ?? "";
+            $localityName = $metadata['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName'] ?? "";
+            if ($localityName !== $this->localityName) {
                 return false;
             }
         }
+
         return true;
     }
 }
