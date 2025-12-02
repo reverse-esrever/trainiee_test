@@ -20,6 +20,7 @@
         @endif
     </head>
     <body>
+        @include('components.auth.login-or-register-buttons')
         @yield('content')
     </body>
 </html>
