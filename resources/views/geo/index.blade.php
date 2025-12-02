@@ -8,6 +8,8 @@
         </div>
 
 
+
+
         <form action="{{ route('geo.store') }}" method="POST"
             class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-8">
             @csrf
@@ -44,7 +46,7 @@
                             </div>
                         </div>
                         <div class="col-span-3 flex justify-end">
-                            <a href="{{route('geo.show', $geo->pos)}}"
+                            <a href="{{ route('geo.show', $geo->pos) }}"
                                 class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition-colors">
                                 Подробнее
                             </a>
@@ -53,6 +55,25 @@
                 @endforeach
             </div>
         @endif
+
+                <div>
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-2xl font-bold mb-6">Последние запросы</h1>
+
+                @foreach ($queries as $query)
+                    <div class="mb-4 p-4 border-l-4 border-blue-500 bg-gray-100">
+                        <p class="text-gray-800">{{ $query->text }}</p>
+                        <div class="text-sm text-gray-500 mt-2">
+                            {{ $query->updated_at->format('H:i, d.m.Y') }}
+                        </div>
+                    </div>
+                @endforeach
+
+                @if (count($queries) === 0)
+                    <p class="text-gray-500 text-center py-8">Нет запросов</p>
+                @endif
+            </div>
+        </div>
     </div>
 
     {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -136,7 +157,7 @@
                 </ul>
             </section>
         </div>
-    @elseif (isset($results) && is_array($results) && count($results) === 0)
+    @elseif (isset($geos) && is_array($geos) && count($geos) === 0)
         <div class="bg-white rounded-xl shadow p-6 text-center text-gray-700">
             Нет результатов. Попробуйте изменить адрес или увеличить точность ввода.
         </div> --}}

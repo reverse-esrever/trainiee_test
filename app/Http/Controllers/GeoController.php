@@ -20,7 +20,8 @@ class GeoController extends Controller
     {
         $geos = session('GeoData') ?? [];
         $geos = $this->dto->getDTOGeoAddresses($geos);
-        return view('geo.index', compact('geos'));
+        $queries = $this->service->getQueries();
+        return view('geo.index', compact('geos', 'queries'));
     }
 
     public function store(GeoStoreRequest $request)
@@ -28,6 +29,7 @@ class GeoController extends Controller
         $data = $request->validated();
         $data = $this->service->getDataFromAddress($data);
         session(['GeoData' => $data]);
+        $this->service->saveQuery($request->address);
         return redirect()->route('geo.index');
     }
 
