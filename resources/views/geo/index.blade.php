@@ -59,7 +59,7 @@
                 <div>
             <div class="max-w-2xl mx-auto">
                 <h1 class="text-2xl font-bold mb-6">Последние запросы</h1>
-
+                <a href="{{route('queries.index')}}">Все запросы</a>
                 @foreach ($queries as $query)
                     <div class="mb-4 p-4 border-l-4 border-blue-500 bg-gray-100">
                         <p class="text-gray-800">{{ $query->text }}</p>
@@ -75,90 +75,4 @@
             </div>
         </div>
     </div>
-
-    {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <section class="bg-white rounded-xl shadow p-4 border border-gray-200">
-                <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-lg font-semibold text-gray-800">Метро (первые 5)</h2>
-                    <span class="text-sm text-gray-500">по расстоянию</span>
-                </div>
-                <ul class="divide-y divide-gray-200">
-                    @foreach ($results['metro'] as $item)
-                        <li class="py-3">
-                            <div class="text-sm font-medium text-gray-800">{{ $item['name'] ?? '' }}</div>
-                            @if (!empty($item['distance']))
-                                <div class="text-xs text-gray-500">Расстояние: {{ $item['distance'] }} м</div>
-                            @endif
-                            @if (!empty($item['district']))
-                                <div class="text-xs text-gray-500">Район: {{ $item['district'] }}</div>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-
-            <!-- Улицы -->
-            <section class="bg-white rounded-xl shadow p-4 border border-gray-200">
-                <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-lg font-semibold text-gray-800">Улицы (первые 5)</h2>
-                    <span class="text-sm text-gray-500">по расстоянию</span>
-                </div>
-                <ul class="divide-y divide-gray-200">
-                    @foreach ($results['streets'] as $item)
-                        <li class="py-3">
-                            <div class="text-sm font-medium text-gray-800">{{ $item['name'] ?? '' }}</div>
-                            @if (!empty($item['distance']))
-                                <div class="text-xs text-gray-500">Расстояние: {{ $item['distance'] }} м</div>
-                            @endif
-                            @if (!empty($item['district']))
-                                <div class="text-xs text-gray-500">Район: {{ $item['district'] }}</div>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-
-            <!-- Дома -->
-            <section class="bg-white rounded-xl shadow p-4 border border-gray-200">
-                <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-lg font-semibold text-gray-800">Дома (первые 5)</h2>
-                    <span class="text-sm text-gray-500">по расстоянию</span>
-                </div>
-                <ul class="divide-y divide-gray-200">
-                    @foreach ($results['houses'] as $item)
-                        <li class="py-3">
-                            <div class="text-sm font-medium text-gray-800">{{ $item['address'] ?? '' }}</div>
-                            @if (!empty($item['distance']))
-                                <div class="text-xs text-gray-500">Расстояние: {{ $item['distance'] }} м</div>
-                            @endif
-                            @if (!empty($item['district']))
-                                <div class="text-xs text-gray-500">Район: {{ $item['district'] }}</div>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-
-            <!-- Район города -->
-            <section class="bg-white rounded-xl shadow p-4 border border-gray-200">
-                <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-lg font-semibold text-gray-800">Район города (первые 5)</h2>
-                    <span class="text-sm text-gray-500">по близости к адресу</span>
-                </div>
-                <ul class="divide-y divide-gray-200">
-                    @foreach ($results['districts'] as $item)
-                        <li class="py-3">
-                            <div class="text-sm font-medium text-gray-800">{{ $item['name'] ?? '' }}</div>
-                            @if (!empty($item['distance']))
-                                <div class="text-xs text-gray-500">Расстояние: {{ $item['distance'] }} м</div>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </section>
-        </div>
-    @elseif (isset($geos) && is_array($geos) && count($geos) === 0)
-        <div class="bg-white rounded-xl shadow p-6 text-center text-gray-700">
-            Нет результатов. Попробуйте изменить адрес или увеличить точность ввода.
-        </div> --}}
 @endsection
