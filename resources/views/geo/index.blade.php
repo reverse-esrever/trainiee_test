@@ -55,11 +55,38 @@
                 @endforeach
             </div>
         @endif
+        @if (!isset($geos) || !is_array($geos) || count($geos) == 0)
+            <div class="flex flex-col items-center justify-center py-12 px-4 text-center">
+                <div class="mb-4 p-3 bg-gray-100 rounded-full">
+                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Ничего не найдено</h3>
+                <p class="text-gray-600 max-w-md">Попробуйте изменить параметры поиска или создайте новый запрос</p>
+            </div>
+        @endif
+        <div>
 
-                <div>
             <div class="max-w-2xl mx-auto">
                 <h1 class="text-2xl font-bold mb-6">Последние запросы</h1>
-                <a href="{{route('queries.index')}}">Все запросы</a>
+                <div class="mt-8 mb-6">
+                    <a href="{{ route('queries.index') }}"
+                        class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white font-medium rounded-lg hover:from-gray-900 hover:to-black transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                            </path>
+                        </svg>
+                        Все запросы
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
                 @foreach ($queries as $query)
                     <div class="mb-4 p-4 border-l-4 border-blue-500 bg-gray-100">
                         <p class="text-gray-800">{{ $query->text }}</p>
