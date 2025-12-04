@@ -1,59 +1,45 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Тестовое задание
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Необходимо получить информацию о районе города, ближайшим станция метро,
+улице и дому по адресу, введённого пользователем в текстовом поле.
+Пользователь может ввести всё что угодно, но интересны только адреса Москвы.
+Результат выполнения выводить на этой же странице в любом читаемом виде.
+Если результатов несколько, то выводить первые 5.
+В качестве API для геокодирования можно использовать, например, бесплатную
+версию `https://yandex.ru/maps-api/products/geocoder-api` или `https://dadata.ru/.`
+Приложение должно сохранять запросы пользователя (только уникальные) в БД
+(MySQL).
+В качестве фреймворка для приложения разрешается использовать Laravel. Либо вы
+можете использовать «чистый» PHP. Ожидаем увидеть ваше решение без
+использования сторонних библиотек.
+Для быстрого развёртывания ожидается увидеть файл docker-compose.yml с
+необходимыми сервисами.
+Итоговой код можно разместить в репозитории и прислать ссылку на репозиторий.
 
-## About Laravel
+## Технологии и инструменты
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Backend**
+- PHP
+- Laravel
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Геокодирование**
+- Yandex Geocoder API
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**База данных**
+- MySQL
 
-## Learning Laravel
+**Развёртывание**
+- Laravel Sail
+- Docker Compose
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Шаги развертывания
+- Клонировать проект ```git clone <ссылка на репозиторий>```
+- Cоздать файл .env, вставить свой GEO_CODER_API и данные для подключения к БД
+- сгенерировать ключ приложения для ларавел ```php artisan key:generate```
+- В рабочей папке проекта установить зависимости ```composer install```
+- Поднять контейнеры с приложением и БД ( ```docker compose up -d``` или ```./vendor/bin/sail up -d```)
+- Выполнить команды ```npm install && npm run dev``` внутри контейнера с приложением(laravel.test). Можно прописать в рабочей папке проекта следующее ```docker compose exec laravel.test sh -c "npm install && npm run dev"``` либо зайти самостоятельно в контейнер и прописать их в терминале
+- Выполнить миграцию ```php artisan:migrate``` внутри контейнера с приложением(laravel.test). Либо в папке проекта написать ```docker compose exec laravel.test sh -c "php artisan migrate"```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
